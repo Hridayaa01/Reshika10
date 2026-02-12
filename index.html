@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Be My Valentine?</title>
+
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive;
+      background: #ffe6ea;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .top-image {
+      margin-top: 20px;
+    }
+
+    .top-image img {
+      width: 110px;
+      border-radius: 12px;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      font-size: 2.8rem;
+      margin: 25px 0;
+      z-index: 1;
+    }
+
+    .buttons {
+      position: relative;
+      margin-top: 20px;
+      height: 200px;
+      width: 100%;
+    }
+
+    button {
+      font-size: 1.6rem;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      position: relative;
+    }
+
+    #yes {
+      background-color: #ff4d6d;
+      color: white;
+      z-index: 10;
+    }
+
+    #no {
+      background-color: #bbb;
+      color: #333;
+      margin-left: 20px;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Image -->
+  <div class="top-image">
+    <img src="photo.jpg">
+  </div>
+
+  <h1>Will you be my Valentine Reshika? 💘</h1>
+
+  <div class="buttons">
+    <button id="yes">Yes 💖</button>
+    <button id="no">No 😢</button>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+
+    let yesScale = 1;
+    let noClicks = 0;
+    const maxNoClicks = 6;
+
+    noBtn.addEventListener("click", () => {
+      if (noClicks < maxNoClicks) {
+        yesScale += 0.45;
+        yesBtn.style.transform = `scale(${yesScale})`;
+        noClicks++;
+
+        // After final click, dominate the screen
+        if (noClicks === maxNoClicks) {
+          yesBtn.style.position = "fixed";
+          yesBtn.style.left = "50%";
+          yesBtn.style.top = "50%";
+          yesBtn.style.transform = "translate(-50%, -50%) scale(4)";
+          noBtn.style.opacity = "0.2";
+          noBtn.style.pointerEvents = "none";
+        }
+      }
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.body.innerHTML = `
+        <div style="
+          height:100vh;
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          background:#ffe6ea;
+        ">
+          <h1 style="color:#ff4d6d; font-size:4rem;">
+            WOWWWWWWWWWWWWWWWWWWW💖<br>
+            Best Valentine Ever 😘
+          </h1>
+        </div>
+      `;
+    });
+  </script>
+
+</body>
+</html>
+
